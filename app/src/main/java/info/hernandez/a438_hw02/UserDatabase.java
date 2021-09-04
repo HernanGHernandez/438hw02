@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 // class for database
-@Database(entities = {UserEntity.class}, version = 3, exportSchema = false)
+@Database(entities = {UserEntity.class}, version = 4, exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
 
 

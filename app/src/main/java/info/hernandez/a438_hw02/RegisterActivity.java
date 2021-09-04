@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userEntity.setUsername(username.getText().toString());
                 userEntity.setPassword(password.getText().toString());
                 // get id
-                userEntity.setUserId(Integer.parseInt(userId.getText().toString()));
+                userEntity.setUserId(userId.getText().toString());
 
 
                 if(validateReg(userEntity)){

@@ -27,7 +27,7 @@ public class WelcomeScreen extends AppCompatActivity {
         userOutput.setText(username);
 
         idOutput = findViewById(R.id.userId);
-        int id = Integer.parseInt(getIntent().getStringExtra("id"));
+        String id = getIntent().getStringExtra("id");
         idOutput.setText(id);
 
 
@@ -40,25 +40,24 @@ public class WelcomeScreen extends AppCompatActivity {
 
         JsonPlaceHolderApi api = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<List<Post>> call = api.getPosts(id);
+        Call<List<Post>> call = api.getPosts();
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse (Call<List<Post>> call, Response<List<Post>> response) {
-                if (!response.isSuccessful()) {
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(!response.isSuccessful()){
                     userInfo.setText("Code: " + response.code());
                     return;
                 }
-
                 List<Post> posts = response.body();
-                for (Post post : posts) {
-                    StringBuilder str = new StringBuilder();
+                for(Post post : posts){
+                    String content = " ";
+                    content += "ID: " + post.getId() + "\n";
+                    content += "User ID: " + post.getUserId() + "\n";
+                    content += "Title: " + post.getTitle() + "\n";
+                    content +=  "Text: " + post.getText() +  "\n\n";
 
-                    str.append("ID: ").append(post.getId()).append("\n");
-                    str.append("Title: ").append(post.getTitle()).append("\n");
-                    str.append("Text: ").append(post.getText()).append("\n\n");
-
-                    userInfo.append(str.toString());
+                    userInfo.append(content);
                 }
             }
 

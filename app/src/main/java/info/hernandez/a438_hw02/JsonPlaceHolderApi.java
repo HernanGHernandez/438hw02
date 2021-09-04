@@ -7,6 +7,6 @@ import java.util.List;
 import retrofit2.Call;
 
 public interface JsonPlaceHolderApi {
-    @GET("users/{id}/posts")
-    Call<List<Post>> getPosts(@Path("id") int id);
+    @GET("posts")
+    Call<List<Post>> getPosts();
 }
